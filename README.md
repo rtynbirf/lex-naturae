@@ -1,3 +1,21 @@
+<div align="center">
+  <img src="banner.png" width="100%" alt="штандарт lex-naturae" />
+</div>
+
+<!--ФОРЖ:ПАСПОРТ:НАЧАЛО-->
+<div align="center">
+  <img src="revo-page.svg" width="100%" alt="РЕВО-паспорт страницы lex-naturae: строение файлов, лексикон, числа — по фактическому контенту" />
+</div>
+
+| ФАЙЛОВ | ПАПОК | КОММИТОВ | ОБНОВЛЕНО | РЕЛИЗОВ |
+|---:|---:|---:|---|---:|
+| 14 | 1 | 2 | 2026-11-16 | 0 |
+<!--ФОРЖ:ПАСПОРТ:КОНЕЦ-->
+
+<div align="center">
+  <img src="forge-divider.svg" width="62%" alt="делитель НОВАЯ МАСТЕРСКАЯ" />
+</div>
+
 # Lex Naturae
 
 **Claim/evidence ledger.** Separates observations from hypotheses, philosophical principles and institutional rules. Machine-verifiable: CSV cell extraction, excerpt verification, SHA-256 artifact integrity, unit ranges, graph conflict detection.
