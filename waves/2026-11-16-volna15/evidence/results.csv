@@ -1,0 +1,12 @@
+metric,value
+house_alarms_before,16
+house_alarms_after,1
+reds_greened,7
+legit_added_wave15,3
+reruns_accepted,8
+dispatches_accepted,5
+genome_pin_catchups,4
+khozyain_pushes_accepted,2
+slice_append_delta_bytes,6110
+lex_claims_total,4
+lex_run1_valid,3

@@ -1,0 +1,138 @@
+[
+  {
+    "claim_id": "WAV15-REDS-CLOSED",
+    "statement": "Из 10 красных main замера волны-14 к финальному замеру khozyain_sweep зелёны 7 тел (фасад, index ×2, лицо, cell-rs, singulyar ×2), 3 класса внесены в legit_open_states с причинами и дедлайнами; тревоги дома 16 → 1 (осталась только I4).",
+    "kind": "observation",
+    "scope": "волна-15, FSM-такт 2026-11-16",
+    "scope_id": "wave15-fsm-takt",
+    "status": "SUPPORTED",
+    "evidence": [
+      {
+        "description": "тел с красным main, позеленевших лечением волны-15",
+        "method": "measurement",
+        "result": "reds_greened = 7 (CSV строка 4)",
+        "protocol": "волна-15 протокол замера (машина, не память)",
+        "instrument": "python3 wave15 (stdlib)",
+        "unit": "count",
+        "quantity": "count",
+        "measurement_value": 7,
+        "tolerance": 0,
+        "raw_data_ref": "evidence/results.csv",
+        "raw_data_sha256": "7034aa15b7316b62a5935cb8c35bec232032e81c7505fa8a97319021c1e8cec8",
+        "csv_row": 4,
+        "csv_column": "value"
+      },
+      {
+        "description": "дословная выдержка финального замера",
+        "method": "log_analysis",
+        "result": "финальный замер нашёл только одну тревогу I4",
+        "protocol": "чтение лога дословной выдержкой",
+        "raw_data_ref": "evidence/sweep_output2.txt",
+        "raw_data_sha256": "c630cc62a359e80c02fc4609e5ad4b7b75ffa47b81529b2c3ad7cfffef00014b",
+        "excerpt": "=== ТРЕВОГИ (1) ==="
+      }
+    ]
+  },
+  {
+    "claim_id": "WAV15-APPEND-ONLY",
+    "statement": "Срез №9 вписан в khozyain/HOUSE_STATE.md только в конец: SHA-256 первых 68744 байт новой версии совпал с SHA-256 HEAD-версии (4b16ec88…), прирост 6110 байт.",
+    "kind": "observation",
+    "scope": "волна-15, FSM-такт 2026-11-16",
+    "scope_id": "wave15-fsm-takt",
+    "status": "SUPPORTED",
+    "evidence": [
+      {
+        "description": "прирост длины HOUSE_STATE.md, байт",
+        "method": "measurement",
+        "result": "slice_append_delta_bytes = 6110 (CSV строка 10)",
+        "protocol": "волна-15 протокол замера (машина, не память)",
+        "instrument": "python3 wave15 (stdlib)",
+        "unit": "count",
+        "quantity": "count",
+        "measurement_value": 6110,
+        "tolerance": 0,
+        "raw_data_ref": "evidence/results.csv",
+        "raw_data_sha256": "7034aa15b7316b62a5935cb8c35bec232032e81c7505fa8a97319021c1e8cec8",
+        "csv_row": 10,
+        "csv_column": "value"
+      },
+      {
+        "description": "дословная выдержка префикс-проверки",
+        "method": "log_analysis",
+        "result": "SHA-256 префикса совпал с SHA-256 HEAD-версии файла",
+        "protocol": "чтение лога дословной выдержкой",
+        "raw_data_ref": "evidence/prefix_check.txt",
+        "raw_data_sha256": "b9baef16979bd19258acfda5b5d64fb27a18b057674c00b418f12ebc413eb239",
+        "excerpt": "PREFIX_OK match: prefix sha equals HEAD sha"
+      }
+    ]
+  },
+  {
+    "claim_id": "WAV15-KHOZYAIN-SEAL",
+    "statement": "Срез №9 и legit ×3 запечатаны: коммит 56b60a66a67d7a8b4f6d7c770b10a5ee52429c1a на origin/main khozyain; API GET /commits/main → HTTP 200.",
+    "kind": "observation",
+    "scope": "волна-15, FSM-такт 2026-11-16",
+    "scope_id": "wave15-fsm-takt",
+    "status": "SUPPORTED",
+    "evidence": [
+      {
+        "description": "пушей волны-15 в khozyain, принятых GitHub",
+        "method": "measurement",
+        "result": "khozyain_pushes_accepted = 2 (CSV строка 9)",
+        "protocol": "волна-15 протокол замера (машина, не память)",
+        "instrument": "python3 wave15 (stdlib)",
+        "unit": "count",
+        "quantity": "count",
+        "measurement_value": 2,
+        "tolerance": 0,
+        "raw_data_ref": "evidence/results.csv",
+        "raw_data_sha256": "7034aa15b7316b62a5935cb8c35bec232032e81c7505fa8a97319021c1e8cec8",
+        "csv_row": 9,
+        "csv_column": "value"
+      },
+      {
+        "description": "дословная выдержка ответа API",
+        "method": "log_analysis",
+        "result": "API вернул 200 по HEAD origin/main после пуша",
+        "protocol": "чтение лога дословной выдержкой",
+        "raw_data_ref": "evidence/api_khozyain.json",
+        "raw_data_sha256": "bcc28047f7909292c781f8f352d84181b26050a113189c29867849d16e5f170c",
+        "excerpt": "\"status\": 200, \"sha\": \"56b60a66a67d7a8b4f6d7c770b10a5ee52429c1a\""
+      }
+    ]
+  },
+  {
+    "claim_id": "WAV15-CLAIMS-VALID",
+    "statement": "Полный набор приёмки волны-15 — 4 claims (этот — четвёртый); прогон 1 lex_naturae.py подтвердил первые 3: WAV15-REDS-CLOSED, WAV15-APPEND-ONLY, WAV15-KHOZYAIN-SEAL.",
+    "kind": "observation",
+    "scope": "волна-15, FSM-такт 2026-11-16",
+    "scope_id": "wave15-fsm-takt",
+    "status": "SUPPORTED",
+    "evidence": [
+      {
+        "description": "всего claims в приёмке волны-15",
+        "method": "measurement",
+        "result": "lex_claims_total = 4 (CSV строка 11)",
+        "protocol": "волна-15 протокол замера",
+        "instrument": "python3 wave15 (stdlib)",
+        "unit": "count",
+        "quantity": "count",
+        "measurement_value": 4,
+        "tolerance": 0,
+        "raw_data_ref": "evidence/results.csv",
+        "raw_data_sha256": "7034aa15b7316b62a5935cb8c35bec232032e81c7505fa8a97319021c1e8cec8",
+        "csv_row": 11,
+        "csv_column": "value"
+      },
+      {
+        "description": "итог прогона 1",
+        "method": "log_analysis",
+        "result": "RUN1: 3/3 VALID",
+        "protocol": "stdout lex_naturae.py",
+        "raw_data_ref": "evidence/run1_output.txt",
+        "raw_data_sha256": "1862ef37a188ed48d4f0a53aed3f907eef577fe0d2f9a31256d3da6d23409465",
+        "excerpt": "RUN1: 3/3 VALID"
+      }
+    ]
+  }
+]
