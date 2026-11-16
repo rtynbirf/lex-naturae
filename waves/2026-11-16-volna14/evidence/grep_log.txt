@@ -1,0 +1,4 @@
+VOLNA14 GHP SCAN
+scope: /home/z/my-project recursive (minus .house-fsm/tmp — единственное разрешённое место токена, устав S1)
+pattern: ghp_[A-Za-z0-9]{30,}
+GHP_FILES=0: no token strings outside tmp/600

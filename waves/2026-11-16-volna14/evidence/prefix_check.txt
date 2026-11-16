@@ -1,0 +1,6 @@
+VOLNA14 PREFIX CHECK
+file: khozyain/HOUSE_STATE.md
+bytes_before: 57008
+sha256_head:  55eb8bee742d85806cdea2987b8006e5dc78c4c471eadaf2594625d1bd3cf65b
+sha256_prefix: 55eb8bee742d85806cdea2987b8006e5dc78c4c471eadaf2594625d1bd3cf65b
+PREFIX_OK match: prefix sha equals HEAD sha

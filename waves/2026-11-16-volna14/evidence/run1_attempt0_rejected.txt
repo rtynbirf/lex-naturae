@@ -1,0 +1,33 @@
+{
+  "valid": false,
+  "claim_count": 3,
+  "claims": [
+    {
+      "valid": false,
+      "errors": [
+        "evidence[1].excerpt must be at least 12 characters and 3 words"
+      ],
+      "claim_id": "WAV14-APPEND-ONLY",
+      "claim_index": 0
+    },
+    {
+      "valid": false,
+      "errors": [
+        "evidence[1].excerpt must be at least 12 characters and 3 words"
+      ],
+      "claim_id": "WAV14-GREP-ZERO",
+      "claim_index": 1
+    },
+    {
+      "valid": false,
+      "errors": [
+        "evidence[1].excerpt must be at least 12 characters and 3 words"
+      ],
+      "claim_id": "WAV14-KHOZYAIN-SEAL",
+      "claim_index": 2
+    }
+  ],
+  "graph_errors": [],
+  "graph_warnings": [],
+  "exit_code": 2
+}

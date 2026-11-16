@@ -1,0 +1,138 @@
+[
+  {
+    "claim_id": "WAV14-APPEND-ONLY",
+    "statement": "Дополнение к срезу №7 вписано в khozyain/HOUSE_STATE.md только в конец: SHA-256 первых 57008 байт новой версии совпал с SHA-256 HEAD-версии (55eb8bee742d8580…), прирост длины 6510 байт.",
+    "kind": "observation",
+    "scope": "волна-14, FSM-такт 2026-11-16",
+    "scope_id": "wave14-fsm-takt",
+    "status": "SUPPORTED",
+    "evidence": [
+      {
+        "description": "прирост длины HOUSE_STATE.md, байт",
+        "method": "measurement",
+        "result": "append_delta_bytes = 6510 (CSV строка 4)",
+        "protocol": "волна-14 протокол замера (машина, не память)",
+        "instrument": "python3 wave14 (stdlib)",
+        "unit": "count",
+        "quantity": "count",
+        "measurement_value": 6510,
+        "tolerance": 0,
+        "raw_data_ref": "evidence/results.csv",
+        "raw_data_sha256": "d794ffa00922944738a7b1d6c8c7a04fa33e2395c1c324ddb10b2646e305ad39",
+        "csv_row": 4,
+        "csv_column": "value"
+      },
+      {
+        "description": "дословная выдержка префикс-проверки",
+        "method": "log_analysis",
+        "result": "SHA-256 префикса совпал с SHA-256 HEAD-версии файла",
+        "protocol": "чтение лога дословной выдержкой",
+        "raw_data_ref": "evidence/prefix_check.txt",
+        "raw_data_sha256": "8bb17d64a61194806de6c632dc43b3471fe12d6f2f54fe6fa3881a0649d515bc",
+        "excerpt": "PREFIX_OK match: prefix sha equals HEAD sha"
+      }
+    ]
+  },
+  {
+    "claim_id": "WAV14-GREP-ZERO",
+    "statement": "Рекурсивный скан рабочей области песочницы на строку ghp_ нашёл 0 файлов вне единственного разрешённого места токена (tmp/600, устав S1).",
+    "kind": "observation",
+    "scope": "волна-14, FSM-такт 2026-11-16",
+    "scope_id": "wave14-fsm-takt",
+    "status": "SUPPORTED",
+    "evidence": [
+      {
+        "description": "файлы со строкой ghp_ вне tmp/600",
+        "method": "measurement",
+        "result": "ghp_files_outside_tmp = 0 (CSV строка 5)",
+        "protocol": "волна-14 протокол замера (машина, не память)",
+        "instrument": "python3 wave14 (stdlib)",
+        "unit": "count",
+        "quantity": "count",
+        "measurement_value": 0,
+        "tolerance": 0,
+        "raw_data_ref": "evidence/results.csv",
+        "raw_data_sha256": "d794ffa00922944738a7b1d6c8c7a04fa33e2395c1c324ddb10b2646e305ad39",
+        "csv_row": 5,
+        "csv_column": "value"
+      },
+      {
+        "description": "дословная выдержка лога скана",
+        "method": "log_analysis",
+        "result": "скан завершился нулём находок",
+        "protocol": "чтение лога дословной выдержкой",
+        "raw_data_ref": "evidence/grep_log.txt",
+        "raw_data_sha256": "b89a7eb9485bd668e03aa8703590d2ce828352f18d47de99cc57c2654710e29f",
+        "excerpt": "GHP_FILES=0: no token strings outside tmp/600"
+      }
+    ]
+  },
+  {
+    "claim_id": "WAV14-KHOZYAIN-SEAL",
+    "statement": "Срез-дополнение волны-14 запечатано: коммит dc49895f8079578d5d64b7551ecddc999bf91954 принят на origin/main khozyain; API GET /repos/rtynbirf/khozyain/commits/main → HTTP 200.",
+    "kind": "observation",
+    "scope": "волна-14, FSM-такт 2026-11-16",
+    "scope_id": "wave14-fsm-takt",
+    "status": "SUPPORTED",
+    "evidence": [
+      {
+        "description": "пушей волны-14 в khozyain, принятых GitHub",
+        "method": "measurement",
+        "result": "khozyain_pushes_accepted = 1 (CSV строка 6)",
+        "protocol": "волна-14 протокол замера (машина, не память)",
+        "instrument": "python3 wave14 (stdlib)",
+        "unit": "count",
+        "quantity": "count",
+        "measurement_value": 1,
+        "tolerance": 0,
+        "raw_data_ref": "evidence/results.csv",
+        "raw_data_sha256": "d794ffa00922944738a7b1d6c8c7a04fa33e2395c1c324ddb10b2646e305ad39",
+        "csv_row": 6,
+        "csv_column": "value"
+      },
+      {
+        "description": "дословная выдержка ответа API",
+        "method": "log_analysis",
+        "result": "API вернул 200 по HEAD origin/main после пуша",
+        "protocol": "чтение лога дословной выдержкой",
+        "raw_data_ref": "evidence/api_khozyain.json",
+        "raw_data_sha256": "9b0932aa3778779c53275091fe4c2c0e78b09580fd401760824703c470dc7f13",
+        "excerpt": "\"status\": 200, \"sha\": \"dc49895f8079578d5d64b7551ecddc999bf91954\""
+      }
+    ]
+  },
+  {
+    "claim_id": "WAV14-CLAIMS-VALID",
+    "statement": "Полный набор приёмки волны-14 — 4 claims (этот — четвёртый); прогон 1 lex_naturae.py подтвердил первые 3: WAV14-APPEND-ONLY, WAV14-GREP-ZERO, WAV14-KHOZYAIN-SEAL.",
+    "kind": "observation",
+    "scope": "волна-14, FSM-такт 2026-11-16",
+    "scope_id": "wave14-fsm-takt",
+    "status": "SUPPORTED",
+    "evidence": [
+      {
+        "description": "всего claims в приёмке волны-14",
+        "method": "measurement",
+        "result": "lex_claims_total = 4 (CSV строка 7)",
+        "protocol": "волна-14 протокол замера",
+        "instrument": "python3 wave14 (stdlib)",
+        "unit": "count",
+        "quantity": "count",
+        "measurement_value": 4,
+        "tolerance": 0,
+        "raw_data_ref": "evidence/results.csv",
+        "raw_data_sha256": "d794ffa00922944738a7b1d6c8c7a04fa33e2395c1c324ddb10b2646e305ad39",
+        "csv_row": 7,
+        "csv_column": "value"
+      },
+      {
+        "description": "итог прогона 1",
+        "method": "log_analysis",
+        "result": "RUN1: 3/3 VALID",
+        "protocol": "stdout lex_naturae.py",
+        "raw_data_ref": "evidence/run1_output.txt",
+        "raw_data_sha256": "377149e121ec40d06b5bbc1595bfcba12e292fd812fe87b0c7422ca7c568264a",
+        "excerpt": "RUN1: 3/3 VALID"
+      }
+    ]
+  }
+]

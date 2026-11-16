@@ -1,0 +1,20 @@
+ДОМ: 36 живых репо (без fork/архив)
+непрочитанных уведомлений: 50
+
+=== ТРЕВОГИ (16) ===
+  I1 RED_MAIN rtynbirf/.github [account-facade] run 43862293401
+  I3 OPEN_STATE rtynbirf/cell-rs: PR 1
+  I1 RED_MAIN rtynbirf/cell-rs [Scorecard analysis] run 43835418072
+  I1 RED_MAIN rtynbirf/combain-v2 [РЕВО АВТОПИЛОТ] run 43835427543
+  I1 RED_MAIN rtynbirf/hologram [ГОЛОГРАММА · целое из репо] run 43878546311
+  I1 RED_MAIN rtynbirf/index [metrics — живой реестр аккаунта] run 43837094313
+  I1 RED_MAIN rtynbirf/index [workflow-lint] run 43880804390
+  I3 OPEN_STATE rtynbirf/polymath-os: PR 2
+  I1 RED_MAIN rtynbirf/rtynbirf [пульс-правды] run 43824668425
+  I3 OPEN_STATE rtynbirf/runtime-protocol: PR 1
+  I1 RED_MAIN rtynbirf/runtime-protocol [Dependabot Updates] run 43717089267
+  I1 RED_MAIN rtynbirf/singulyar [Оракулы дома зелёные (sovereign check)] run 43876675914
+  I1 RED_MAIN rtynbirf/singulyar [Такт-гейт (доказательство выпуска)] run 43876675490
+  I3 OPEN_STATE rtynbirf/singulyar-a0-audit: PR 1
+  I3 OPEN_STATE rtynbirf/voice-atlas-llm: PR 4
+  I4 UNREAD_NOTIFICATION: 50

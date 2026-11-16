@@ -1,0 +1,8 @@
+metric,value
+house_state_bytes_before,57008
+house_state_bytes_after,63518
+append_delta_bytes,6510
+ghp_files_outside_tmp,0
+khozyain_pushes_accepted,1
+lex_claims_total,4
+lex_run1_valid,3
