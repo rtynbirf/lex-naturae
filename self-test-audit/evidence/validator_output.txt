@@ -1,0 +1,8 @@
+[VALIDATOR_OK] schemas and semantic checks passed
+[INTEGRITY_OK] 16 files verified
+[NEGATIVE_TESTS] 11/11
+[AUDITOR_MANIFEST_OK] 16 files verified
+[AUDITOR_JCS_MATCHES_LIBRARY] bytes identical
+[AUDITOR_FREEZE_OK] recomputed hash matches stored value
+[AUDITOR_MUTATIONS] 8/8
+[AUDITOR_BRIDGE_MUTATIONS] 12/12

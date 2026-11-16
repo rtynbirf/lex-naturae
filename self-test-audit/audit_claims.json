@@ -1,0 +1,126 @@
+{
+  "claims": [
+    {
+      "claim_id": "AUD-A0-PACKAGE-VALID",
+      "statement": "A0_STANDARD v0.2.5 passes independent PACKAGE VALID audit with 10 of 10 checks PASS",
+      "kind": "observation",
+      "scope": "A0 audit 2026-11-15",
+      "scope_id": "a0-audit",
+      "status": "SUPPORTED",
+      "evidence": [
+        {
+          "description": "A1-A10 total 10 PASS",
+          "method": "measurement",
+          "result": "10 checks PASS",
+          "protocol": "AUDIT_PROTOCOL.md A1-A10",
+          "instrument": "auditor scripts",
+          "unit": "count",
+          "measurement_value": 10,
+          "raw_data_ref": "evidence/audit_results.csv",
+          "raw_data_sha256": "0f4d6851418bb0d989e2fbcd089667c0b69a5130d637cd72222b4694a3ec4704",
+          "quantity": "count",
+          "csv_row": 17,
+          "csv_column": "count_actual",
+          "tolerance": 0
+        },
+        {
+          "description": "Validator OK",
+          "method": "log_analysis",
+          "result": "VALIDATOR_OK",
+          "protocol": "stdout",
+          "raw_data_ref": "evidence/validator_output.txt",
+          "raw_data_sha256": "f461b5f0207ee8b5c6580fb36fd31ab47680847be2bb4099ed33ae14137cf931",
+          "excerpt": "[VALIDATOR_OK] schemas and semantic checks passed"
+        }
+      ]
+    },
+    {
+      "claim_id": "AUD-BRIDGE-VALID",
+      "statement": "a0_bridge.py passes BRIDGE VALID audit 21 checks PASS",
+      "kind": "observation",
+      "scope": "bridge audit",
+      "scope_id": "bridge-audit",
+      "status": "SUPPORTED",
+      "evidence": [
+        {
+          "description": "H020+BM total 21 PASS",
+          "method": "measurement",
+          "result": "21 checks PASS",
+          "protocol": "H-020 + BM-A..L",
+          "instrument": "auditor_bridge_mutations.py",
+          "unit": "count",
+          "measurement_value": 21,
+          "raw_data_ref": "evidence/audit_results.csv",
+          "raw_data_sha256": "0f4d6851418bb0d989e2fbcd089667c0b69a5130d637cd72222b4694a3ec4704",
+          "quantity": "count",
+          "csv_row": 18,
+          "csv_column": "count_actual",
+          "tolerance": 0
+        }
+      ]
+    },
+    {
+      "claim_id": "R4-X019-MINIMAL",
+      "statement": "Eight capabilities are minimal M(x)>0",
+      "kind": "empirical_hypothesis",
+      "status": "SUPPORTED",
+      "scope": "R4 X-019",
+      "scope_id": "r4-x019",
+      "testable_question": "Does removing each capability cause failure?",
+      "population": "8 capabilities on v4.1",
+      "measure": "count of M(x)>0",
+      "decision_rule": "8 of 8 then minimal",
+      "evidence": [
+        {
+          "description": "X-019 8/8 PASS",
+          "method": "measurement",
+          "result": "8 of 8 M(x)>0",
+          "protocol": "monkey-patch stub/restore",
+          "instrument": "h019b",
+          "unit": "count",
+          "measurement_value": 8,
+          "raw_data_ref": "evidence/audit_results.csv",
+          "raw_data_sha256": "0f4d6851418bb0d989e2fbcd089667c0b69a5130d637cd72222b4694a3ec4704",
+          "quantity": "count",
+          "csv_row": 14,
+          "csv_column": "count_actual",
+          "tolerance": 0
+        }
+      ]
+    },
+    {
+      "claim_id": "AUD-O-B1-GAP",
+      "statement": "HOST-V3 vs A0-ledger-V1 gap honestly disclosed",
+      "kind": "observation",
+      "scope": "O-B1",
+      "scope_id": "ob1",
+      "status": "SUPPORTED",
+      "evidence": [
+        {
+          "description": "BM 12/12 PASS",
+          "method": "measurement",
+          "result": "12 checks PASS",
+          "protocol": "BM-J gap disclosure",
+          "instrument": "auditor_bridge_mutations.py",
+          "unit": "count",
+          "measurement_value": 12,
+          "raw_data_ref": "evidence/audit_results.csv",
+          "raw_data_sha256": "0f4d6851418bb0d989e2fbcd089667c0b69a5130d637cd72222b4694a3ec4704",
+          "quantity": "count",
+          "csv_row": 13,
+          "csv_column": "count_actual",
+          "tolerance": 0
+        },
+        {
+          "description": "Bridge mutations log",
+          "method": "log_analysis",
+          "result": "12/12",
+          "protocol": "stdout",
+          "raw_data_ref": "evidence/validator_output.txt",
+          "raw_data_sha256": "f461b5f0207ee8b5c6580fb36fd31ab47680847be2bb4099ed33ae14137cf931",
+          "excerpt": "[AUDITOR_MUTATIONS] 8/8 [AUDITOR_BRIDGE_MUTATIONS] 12/12"
+        }
+      ]
+    }
+  ]
+}
