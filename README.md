@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="banner.png" width="100%" alt="штандарт lex-naturae" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/lex-naturae@main/banner.png" width="100%" alt="штандарт lex-naturae" />
 </div>
 
 <!--ФОРЖ:ПАСПОРТ:НАЧАЛО-->
@@ -13,7 +13,7 @@
 <!--ФОРЖ:ПАСПОРТ:КОНЕЦ-->
 
 <div align="center">
-  <img src="forge-divider.svg" width="62%" alt="делитель НОВАЯ МАСТЕРСКАЯ" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/lex-naturae@main/forge-divider.svg" width="62%" alt="делитель НОВАЯ МАСТЕРСКАЯ" />
 </div>
 
 # Lex Naturae
