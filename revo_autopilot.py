@@ -10,7 +10,7 @@
 import hashlib, json, os, re, subprocess
 
 try:
-    CFG = json.loads(r'''{"name": "lex-naturae", "num": 132, "school": "МИФО-РЕАЛИЗМ", "desc": "Lex Naturae — claim/evidence ledger. Separates observations from hypotheses, philosophical principles and institutional rules. Machine-verifiable: CSV cell extraction, excerpt verification, SHA-256 artifact integrity, unit ranges, graph conflict detection. v0.7 — audited by Z.ai, 70/70 tests, BOM-tolerant.", "topics": ["audit", "bom-tolerant", "claim-verification", "csv", "evidence-ledger", "lex-naturae", "machine-verifiable", "python", "scientific-integrity", "sha256"], "releases": 0, "palette": {"bg": "#10243E", "bg2": "#1B3B5F", "ink": "#F3ECD9", "gold": "#D4AF37", "gold2": "#E8C868", "dim": "#8FA3BF", "accent": "#D5281B"}}''')
+    CFG = json.loads(r'''{"name": "lex-naturae", "num": 35, "school": "НОВОСТРОЙ РОЯ", "desc": "Lex Naturae — claim/evidence ledger. Separates observations from hypotheses, philosophical principles and institutional rules. Machine-verifiable: CSV cell extraction, excerpt verification, SHA-256 artifact integrity, unit ranges, graph conflict detection. v0.7 — audited by Z.ai, 70/70 tests, BOM-tolerant.", "topics": ["audit", "bom-tolerant", "claim-verification", "csv"], "releases": 0, "palette": {"bg": "#EFE6CF", "bg2": "#F6EFDC", "ink": "#241C10", "gold": "#9A7B23", "gold2": "#C9A227", "dim": "#6E6249", "accent": "#C43B27"}}''')
 except Exception:
     CFG = {"name": "REVO", "num": 0, "school": "", "desc": "", "topics": [], "releases": 0,
            "palette": dict(bg="#EFE6CF", bg2="#F6EFDC", ink="#241C10", gold="#9A7B23",

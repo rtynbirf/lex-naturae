@@ -1,4 +1,10 @@
 <div align="center">
+
+<a href="https://github.com/rtynbirf/lex-naturae"><img src="banner.png" width="100%" alt="lex-naturae — штандарт мастерской в каноне ORNAMENTAL MYTHO-REALISM"></a>
+
+</div>
+
+<div align="center">
   <img src="https://cdn.jsdelivr.net/gh/rtynbirf/lex-naturae@main/banner.png" width="100%" alt="штандарт lex-naturae" />
 </div>
 
@@ -9,7 +15,7 @@
 
 | ФАЙЛОВ | ПАПОК | КОММИТОВ | ОБНОВЛЕНО | РЕЛИЗОВ |
 |---:|---:|---:|---|---:|
-| 56 | 10 | 61 | 2026-11-19 | 0 |
+| 56 | 10 | 62 | 2026-11-19 | 0 |
 <!--ФОРЖ:ПАСПОРТ:КОНЕЦ-->
 
 <div align="center">
