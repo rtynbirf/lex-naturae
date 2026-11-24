@@ -1,0 +1,61 @@
+{
+ "export": "lex-naturae-audit",
+ "export_version": 1,
+ "generated_utc": "2026-11-24T01:00:51Z",
+ "claim_count": 2,
+ "status_meanings": {
+  "UNKNOWN": "No assessment has been established.",
+  "NOT_RUN": "The proposed check has not been performed.",
+  "SUPPORTED": "The submitter marked this supported; evidence is not independently authenticated.",
+  "CONTRADICTED": "The submitter marked this contradicted; evidence is not independently authenticated.",
+  "MIXED": "The submitter marked the evidence mixed; evidence is not independently authenticated."
+ },
+ "claims": [
+  {
+   "claim_id": "OBS-TRACE-C-2026-11-24-Q1",
+   "statement": "Внешний агент (Z.ai GLM, модель-семья дома — не второй исполнитель по канону ротации) нашёл правило дома об упавших CI-прогонах за 1 шаг: polymath-os/AGENTS.md (9376 симв) содержит ПРАВИЛО 24 ШРАМ-ПРОТОКОЛ с именем механизма (шрам в KNOWN_ISSUES с ID прогона, приёмка зелёным). Ворота клетки C «правило за ≤2 шага» для этого вопроса пройдены.",
+   "kind": "observation",
+   "scope": "клетка C (AGENTS.md), замер 2026-11-24, вход raw без токена",
+   "status": "SUPPORTED",
+   "status_meaning": "The submitter marked this supported; evidence is not independently authenticated.",
+   "valid": true,
+   "evidence": [
+    {
+     "description": "лог трассы внешнего агента: маршруты, размеры, sha256 файлов",
+     "method": "log_analysis",
+     "result": "Q1 найден за 1 шаг (9376 симв), Q2 за 3 шага, след чтения 30484 байта",
+     "source": "",
+     "raw_data_ref": "evidence/trace_log.txt",
+     "raw_data_sha256": "da4448c51f5ff5b10c7651f1d48b5bac60f761a471ce1fa4b9ff83193ebef700",
+     "content_sha256": "",
+     "locator": "",
+     "excerpt": "ВЕРДИКТ КЛЕТКИ C: канон ПОМОГАЕТ"
+    }
+   ],
+   "links": []
+  },
+  {
+   "claim_id": "OBS-TRACE-C-2026-11-24-Q2",
+   "statement": "Тот же агент нашёл правило для внешних сверщиков (HEAD из API, не угадывать main) за 3 шага: repo-doctrine/AGENTS.md не индексирует главы → README.md даёт оглавление → 02-ветки-и-защита.md содержит раздел. След чтения: 30484 байта из корпуса в сотни КБ, канон целиком не читался. Ворота «≤2 шага» для этого вопроса НЕ пройдены; фикс-кандидат: карта глав в repo-doctrine/AGENTS.md.",
+   "kind": "observation",
+   "scope": "клетка C (AGENTS.md), замер 2026-11-24, вход raw без токена",
+   "status": "SUPPORTED",
+   "status_meaning": "The submitter marked this supported; evidence is not independently authenticated.",
+   "valid": true,
+   "evidence": [
+    {
+     "description": "лог трассы внешнего агента: маршрут Q2 в три шага через оглавление README",
+     "method": "log_analysis",
+     "result": "3 шага: AGENTS.md (5915) → README.md (9532) → 02-ветки-и-защита.md (5661)",
+     "source": "",
+     "raw_data_ref": "evidence/trace_log.txt",
+     "raw_data_sha256": "da4448c51f5ff5b10c7651f1d48b5bac60f761a471ce1fa4b9ff83193ebef700",
+     "content_sha256": "",
+     "locator": "",
+     "excerpt": "Ворота «≤2 шага»: НЕ ПРОЙДЕНЫ (3 > 2)"
+    }
+   ],
+   "links": []
+  }
+ ]
+}

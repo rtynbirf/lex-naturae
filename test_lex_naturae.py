@@ -597,3 +597,71 @@ class TestBomTolerance(unittest.TestCase):
         claims = load_claim_collection(bom_json)
         self.assertEqual(len(claims), 1)
         self.assertEqual(claims[0].claim_id, "B1")
+
+
+class OfflineCycleExportTests(unittest.TestCase):
+    """КЛЕТКА D · публичный тест на отсутствие сети (2026-11-24, слияние 4 клеток).
+
+    Паттерн Sovereign Agent Logbook: сокеты блокируются на ВЕСЬ цикл
+    write -> verify -> export; любой исходящий вызов = AssertionError =
+    красный прогон. Публичность: тест живёт в открытом репо и гоняется CI
+    (.github/workflows/tests.yml) — зелёный прогон виден каждому без
+    участия автора записи.
+    """
+
+    def test_offline_cycle_write_verify_export(self):
+        import csv as csv_module
+        import socket as socket_module
+
+        def _blocked(*args, **kwargs):
+            raise AssertionError("исходящий сетевой вызов в офлайн-цикле lex-naturae")
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            # WRITE: клейм с доказательством-файлом (сырые данные + sha256)
+            raw = root / "trace.txt"
+            raw.write_text("TRACE Q1: 1 шаг — ПРАВИЛО 24 ШРАМ-ПРОТОКОЛ найден в AGENTS.md\n",
+                           encoding="utf-8")
+            digest = hashlib.sha256(raw.read_bytes()).hexdigest()
+            claim = {
+                "claim_id": "OBS-OFFLINE-D-001",
+                "statement": "Офлайн-цикл lex-naturae: запись, проверка и экспорт клейма идут без сети.",
+                "kind": "observation",
+                "scope": "клетка D, публичный тест отсутствия сети, 2026-11-24",
+                "status": "SUPPORTED",
+                "evidence": [{
+                    "description": "выдержка из сырого файла трассы",
+                    "method": "log_analysis",
+                    "result": "файл трассы содержит строку правила",
+                    "protocol": "чтение файла трассы дословной выдержкой",
+                    "raw_data_ref": "trace.txt",
+                    "raw_data_sha256": digest,
+                    "excerpt": "ПРАВИЛО 24 ШРАМ-ПРОТОКОЛ",
+                }],
+            }
+            claims_path = root / "claims.json"
+            claims_path.write_text(json.dumps(claim, ensure_ascii=False), encoding="utf-8")
+            out_json = root / "audit_export.json"
+            out_csv = root / "audit_export.csv"
+
+            with mock.patch.object(socket_module, "socket", _blocked), \
+                 mock.patch.object(socket_module, "create_connection", _blocked), \
+                 mock.patch.object(socket_module, "getaddrinfo", _blocked):
+                # VERIFY: каноническая валидация клейма (2 = invalid)
+                code = main([str(claims_path)])
+                self.assertIn(code, (0, 1), f"валидация упала в офлайн-цикле: exit {code}")
+                # EXPORT: аудиторские дампы тем же вызовом
+                code2 = main([str(claims_path), "--export-json", str(out_json),
+                              "--export-csv", str(out_csv)])
+                self.assertIn(code2, (0, 1), f"экспорт упал в офлайн-цикле: exit {code2}")
+
+            # аудитор без инструмента: голый stdlib
+            self.assertTrue(out_json.exists() and out_csv.exists())
+            data = json.loads(out_json.read_text(encoding="utf-8"))
+            self.assertEqual(data["export"], "lex-naturae-audit")
+            self.assertEqual(data["claims"][0]["claim_id"], "OBS-OFFLINE-D-001")
+            self.assertEqual(data["claims"][0]["evidence"][0]["raw_data_sha256"], digest)
+            rows = list(csv_module.reader(out_csv.read_text(encoding="utf-8").splitlines()))
+            self.assertEqual(rows[0][0], "claim_id")
+            self.assertEqual(rows[1][0], "OBS-OFFLINE-D-001")
+            self.assertIn(digest, rows[1])

@@ -1,0 +1,32 @@
+name: tests
+
+# КЛЕТКА D (2026-11-24, слияние 4 клеток): публичный прогон тестов lex-naturae,
+# включая публичный тест на отсутствие сети (test_offline_cycle_write_verify_export).
+# До этой волны 70/70 гонялись только локально — теперь зелёный виден каждому.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests
+  cancel-in-progress: false
+
+jobs:
+  pytest:
+    name: "70/70 + офлайн-цикл (клетка D)"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: pytest (unittest-стиль)
+        run: |
+          python3 -m pip install --quiet pytest
+          python3 -m pytest test_lex_naturae.py -q

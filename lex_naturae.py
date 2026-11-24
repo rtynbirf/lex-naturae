@@ -641,9 +641,77 @@ def _self_reference_errors(claim: Claim, base_dir: Path, claim_file: Path) -> li
     return errors
 
 
+
+# --- КЛЕТКА D · экспорт для аудитора (2026-11-24, слияние 4 клеток) ---
+# Класс Sovereign Agent Logbook: запись опровержима БЕЗ этого инструмента.
+# Аудитор читает JSON/CSV глазами; sha256 ведут к сырым данным; статусы
+# несут собственные значения (status_meaning) — внешняя опровержимость.
+
+def export_audit_json(claims: list[Claim], path: str | Path,
+                      reports: list[dict[str, Any]] | None = None) -> Path:
+    """Аудиторский дамп JSON: каждая запись — кто/что/статус + доказательства с sha256."""
+    rep = {r.get("claim_id"): r for r in (reports or []) if isinstance(r, dict)}
+    payload = {
+        "export": "lex-naturae-audit",
+        "export_version": 1,
+        "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "claim_count": len(claims),
+        "status_meanings": {s.value: status_meaning(s) for s in Status},
+        "claims": [],
+    }
+    for c in claims:
+        payload["claims"].append({
+            "claim_id": c.claim_id,
+            "statement": c.statement,
+            "kind": c.kind.value,
+            "scope": c.scope,
+            "status": c.status.value,
+            "status_meaning": status_meaning(c.status),
+            "valid": (rep.get(c.claim_id) or {}).get("valid"),
+            "evidence": [
+                {"description": e.description, "method": e.method.value, "result": e.result,
+                 "source": e.source, "raw_data_ref": e.raw_data_ref,
+                 "raw_data_sha256": e.raw_data_sha256, "content_sha256": e.content_sha256,
+                 "locator": e.locator, "excerpt": e.excerpt}
+                for e in (c.evidence or ())
+            ],
+            "links": [{"a": l.a, "b": l.b, "relation": l.relation.value} for l in (c.links or ())],
+        })
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return p
+
+
+def export_audit_csv(claims: list[Claim], path: str | Path) -> Path:
+    """Аудиторская таблица CSV: плоский список клеймов; sha256 через «;» при нескольких."""
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with p.open("w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["claim_id", "kind", "status", "scope", "statement",
+                    "evidence_count", "evidence_methods", "evidence_sha256",
+                    "evidence_refs", "links"])
+        for c in claims:
+            ev = list(c.evidence or ())
+            w.writerow([
+                c.claim_id, c.kind.value, c.status.value, c.scope, c.statement,
+                len(ev),
+                ";".join(e.method.value for e in ev),
+                ";".join((e.raw_data_sha256 or e.content_sha256) for e in ev),
+                ";".join(e.raw_data_ref for e in ev),
+                ";".join(f"{l.a}->{l.b}:{l.relation.value}" for l in (c.links or ())),
+            ])
+    return p
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Validate claims and analyze their relationship graph")
     parser.add_argument("claim_file")
+    parser.add_argument("--export-json", dest="export_json", default="",
+                        help="аудиторский дамп JSON: читается без этого инструмента (клетка D)")
+    parser.add_argument("--export-csv", dest="export_csv", default="",
+                        help="аудиторская таблица CSV: клеймы с sha256 доказательств (клетка D)")
     args = parser.parse_args(argv)
     try:
         file_path = Path(args.claim_file).resolve(strict=True)
@@ -669,6 +737,10 @@ def main(argv: list[str] | None = None) -> int:
         code = 2 if not valid else (1 if graph["warnings"] else 0)
         output = {"valid": valid, "claim_count": len(items), "claims": reports,
                   "graph_errors": graph["errors"], "graph_warnings": graph["warnings"], "exit_code": code}
+        if args.export_json:
+            export_audit_json(claims, args.export_json, reports)
+        if args.export_csv:
+            export_audit_csv(claims, args.export_csv)
     except Exception as ex:
         output = {"valid": False, "error": f"{type(ex).__name__}: {ex}", "exit_code": 2}
         code = 2
