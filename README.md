@@ -4,9 +4,13 @@
 
 </div>
 
+<!--ФОРЖ:МУЗА:НАЧАЛО-->
 <div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/lex-naturae@main/banner.png" width="100%" alt="штандарт lex-naturae" />
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/lex-naturae@main/repo-muse.svg" width="100%" alt="Муза lex-naturae: мастерская КУЗНЯ ПОЛИМАТ, кузня ПОЛИМАТ, раунд 12 · REVE=РЕВО" />
+  <br/>
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/lex-naturae@main/forge-divider.svg" width="62%" alt="делитель мастерской КУЗНЯ ПОЛИМАТ" />
 </div>
+<!--ФОРЖ:МУЗА:КОНЕЦ-->
 
 <!--ФОРЖ:ПАСПОРТ:НАЧАЛО-->
 <div align="center">
@@ -15,8 +19,24 @@
 
 | ФАЙЛОВ | ПАПОК | КОММИТОВ | ОБНОВЛЕНО | РЕЛИЗОВ |
 |---:|---:|---:|---|---:|
-| 71 | 13 | 118 | 2026-11-28 | 0 |
+| 71 | 14 | 1 | 2026-11-28 | 1 |
 <!--ФОРЖ:ПАСПОРТ:КОНЕЦ-->
+
+# lex-naturae
+
+<p align="center"><img src="https://cdn.jsdelivr.net/gh/rtynbirf/lex-naturae@main/.github/social-preview.png" alt="lex-naturae" width="100%"></p>
+
+<div align="center">
+
+<a href="https://github.com/rtynbirf/lex-naturae"><img src="banner.png" width="100%" alt="lex-naturae — штандарт мастерской в каноне ORNAMENTAL MYTHO-REALISM"></a>
+
+</div>
+
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/rtynbirf/lex-naturae@main/banner.png" width="100%" alt="штандарт lex-naturae" />
+</div>
+
+
 
 <div align="center">
   <img src="https://cdn.jsdelivr.net/gh/rtynbirf/lex-naturae@main/forge-divider.svg" width="62%" alt="делитель НОВАЯ МАСТЕРСКАЯ" />
@@ -79,3 +99,5 @@ python -m pytest test_lex_naturae.py -q    # 70/70
 ## Лицензия
 
 MIT.
+
+<!--ФОРЖ:ПОДВАЛ-->
